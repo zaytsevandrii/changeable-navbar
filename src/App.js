@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import './App.scss';
 import Navbar from './components/Navbar';
 
 function App() {
+  const [nav,setNav] = useState(false)
+  
+  window.addEventListener('scroll', fixNav)
+  function fixNav() {
+    setNav(()=>{
+      if(window.scrollY>250){
+        return true
+      }else{
+        return false
+      }
+    })
+  }
+
   return (
     <>
-    <nav>
+    <nav className={`nav ${nav&&'active'}`}>
       <Navbar/>
     </nav>
     <div className='hero'>
